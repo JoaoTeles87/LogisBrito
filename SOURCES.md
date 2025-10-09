@@ -28,6 +28,10 @@ Articles and tutorials that inform the project's technical architecture.
     * **Description:** An introductory article explaining the core concepts of the Semantic Web stack, including the Resource Description Framework (RDF) and the Web Ontology Language (OWL).
     * **Usage:** Serves as a conceptual guide for the data modeling and ontology construction using `rdflib` in Python.
 
+* **[From Ontologies to Agents: The Semantic Web's Quiet Rebirth](https://seanfalconer.medium.com/from-ontologies-to-agents-the-semantic-webs-quiet-rebirth-dc109199b608)**
+    * **Description:** An article arguing for the renewed relevance of semantic technologies in the age of LLMs, highlighting how ontologies can provide the structure and reasoning that agents need.
+    * **Usage:** Provides conceptual validation for the project's hybrid approach, combining a knowledge graph with modern agent-based architectures.
+
 ---
 
 ### Conceptual & Ethical Foundation
