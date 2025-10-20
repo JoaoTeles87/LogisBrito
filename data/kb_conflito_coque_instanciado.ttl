@@ -2,10 +2,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rec: <http://recife.leg.br/ontologia-conflito#> .
 
-rec:Arrecadacao_Perdida a owl:Class ;
-    rdfs:label "Arrecadação Perdida" ;
-    rdfs:subClassOf rec:DanoUrbano .
-
 rec:Caos_Funcional a owl:Class ;
     rdfs:label "Caos Funcional" ;
     rdfs:subClassOf rec:DanoUrbano .
@@ -14,15 +10,22 @@ rec:Centro_Ocioso a owl:Class ;
     rdfs:label "Centro Ocioso" ;
     rdfs:subClassOf rec:EspacoDeConflito .
 
+rec:Comunidade a owl:Class ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
 rec:Doenca_e_Morte a owl:Class ;
     rdfs:label "Doença e Morte" ;
     rdfs:subClassOf rec:DanoUrbano .
 
+rec:Investidor_Desenvolvedor a owl:Class ;
+    rdfs:label "Investidor Desenvolvedor (Agente Positivo)" ;
+    rdfs:subClassOf rec:Agente_de_Mercado ;
+    owl:disjointWith rec:Agente_Especulativo .
+
 rec:Lei_do_Remembramento_2020 a owl:NamedIndividual ;
     rec:causa_direta rec:Risco_de_Gentrificacao_Coque .
 
-rec:Mercado_Imobiliario_Especulativo a rec:Elite_Proprietaria ;
-    rec:em_antagonismo_com rec:Comunidade_do_Coque .
+rec:Mercado_Imobiliario_Especulativo rec:em_antagonismo_com rec:Comunidade_do_Coque .
 
 rec:OODC a owl:Class ;
     rdfs:label "OODC - Outorga Onerosa do Direito de Construir" ;
@@ -32,8 +35,13 @@ rec:PEUC a owl:Class ;
     rdfs:label "PEUC - Parcelamento, Edificação ou Utilização Compulsórios" ;
     rdfs:subClassOf rec:InstrumentoAcao .
 
-rec:Prefeitura_do_Recife a rec:Estado_Inativo ;
-    rec:impede rec:Lei_do_PREZEIS_1995 .
+rec:PoderPublico a owl:Class ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
+rec:Prefeitura_do_Recife rec:impede rec:Lei_do_PREZEIS_1995 .
+
+rec:Proprietario_do_Edificio_X a rec:Agente_Especulativo ;
+    rec:executaAcao rec:Inacao_Edificio_X .
 
 rec:ZEIS_Coque a rec:ZEIS .
 
@@ -42,6 +50,8 @@ rec:causa_direta a owl:ObjectProperty ;
 
 rec:em_antagonismo_com a owl:SymmetricProperty ;
     rdfs:comment "Relação de disputa: X e Y têm objetivos conflitantes." .
+
+rec:executaAcao a owl:ObjectProperty .
 
 rec:financia_a_reversao a owl:ObjectProperty ;
     rdfs:comment "Relação instrumental: X gera recursos para financiar a solução Y." .
@@ -58,31 +68,36 @@ rec:nivelDeAcao a owl:DatatypeProperty ;
 rec:reverte_por_forca a owl:ObjectProperty ;
     rdfs:comment "Relação de poder: X reverte o efeito de Y. (Ex: Instrumento reverte Veto)" .
 
-rec:Comunidade_do_Coque a owl:NamedIndividual .
+rec:Arrecadacao_Perdida a owl:Class ;
+    rdfs:label "Arrecadação Perdida" ;
+    rdfs:subClassOf rec:DanoUrbano .
 
-rec:Elite_Proprietaria a owl:Class ;
-    rdfs:label "Elite Proprietária" ;
-    rdfs:subClassOf rec:VetoInacao .
-
-rec:Estado_Inativo a owl:Class ;
-    rdfs:label "Estado Inativo" ;
-    rdfs:subClassOf rec:VetoInacao .
+rec:Inacao_Edificio_X a rec:VetoInacao ;
+    rec:causa_direta rec:Arrecadacao_Perdida .
 
 rec:Lei_do_PREZEIS_1995 a rec:InstrumentoAcao ;
     rec:reverte_por_forca rec:Risco_de_Gentrificacao_Coque .
 
+rec:VetoInacao a owl:Class .
+
 rec:ZEIS a owl:Class ;
     rdfs:label "ZEIS - Zona Especial de Interesse Social" ;
     rdfs:subClassOf rec:EspacoDeConflito .
+
+rec:Agente_Especulativo a owl:Class ;
+    rdfs:label "Agente Especulativo (Agente Negativo)" ;
+    rdfs:subClassOf rec:Agente_de_Mercado .
+
+rec:Agente_de_Mercado a owl:Class ;
+    rdfs:subClassOf rec:AgenteUrbano .
 
 rec:EspacoDeConflito a owl:Class ;
     rdfs:label "Espaço de Conflito" .
 
 rec:Risco_de_Gentrificacao_Coque a rec:DanoUrbano .
 
-rec:VetoInacao a owl:Class ;
-    rdfs:label "Veto & Inaction" ;
-    rdfs:comment "A classe de todas as ações ou omissões que impedem o desenvolvimento urbano justo." .
+rec:AgenteUrbano a owl:Class ;
+    rdfs:label "Agente Urbano" .
 
 rec:InstrumentoAcao a owl:Class ;
     rdfs:label "Instrumento & Ação" .

@@ -14,17 +14,17 @@ rec:Centro_Ocioso a owl:Class ;
     rdfs:label "Centro Ocioso" ;
     rdfs:subClassOf rec:EspacoDeConflito .
 
+rec:Comunidade a owl:Class ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
 rec:Doenca_e_Morte a owl:Class ;
     rdfs:label "Doença e Morte" ;
     rdfs:subClassOf rec:DanoUrbano .
 
-rec:Elite_Proprietaria a owl:Class ;
-    rdfs:label "Elite Proprietária" ;
-    rdfs:subClassOf rec:VetoInacao .
-
-rec:Estado_Inativo a owl:Class ;
-    rdfs:label "Estado Inativo" ;
-    rdfs:subClassOf rec:VetoInacao .
+rec:Investidor_Desenvolvedor a owl:Class ;
+    rdfs:label "Investidor Desenvolvedor (Agente Positivo)" ;
+    rdfs:subClassOf rec:Agente_de_Mercado ;
+    owl:disjointWith rec:Agente_Especulativo .
 
 rec:OODC a owl:Class ;
     rdfs:label "OODC - Outorga Onerosa do Direito de Construir" ;
@@ -33,6 +33,11 @@ rec:OODC a owl:Class ;
 rec:PEUC a owl:Class ;
     rdfs:label "PEUC - Parcelamento, Edificação ou Utilização Compulsórios" ;
     rdfs:subClassOf rec:InstrumentoAcao .
+
+rec:PoderPublico a owl:Class ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
+rec:VetoInacao a owl:Class .
 
 rec:ZEIS a owl:Class ;
     rdfs:label "ZEIS - Zona Especial de Interesse Social" ;
@@ -43,6 +48,8 @@ rec:causa_direta a owl:ObjectProperty ;
 
 rec:em_antagonismo_com a owl:SymmetricProperty ;
     rdfs:comment "Relação de disputa: X e Y têm objetivos conflitantes." .
+
+rec:executaAcao a owl:ObjectProperty .
 
 rec:financia_a_reversao a owl:ObjectProperty ;
     rdfs:comment "Relação instrumental: X gera recursos para financiar a solução Y." .
@@ -59,15 +66,21 @@ rec:nivelDeAcao a owl:DatatypeProperty ;
 rec:reverte_por_forca a owl:ObjectProperty ;
     rdfs:comment "Relação de poder: X reverte o efeito de Y. (Ex: Instrumento reverte Veto)" .
 
+rec:Agente_Especulativo a owl:Class ;
+    rdfs:label "Agente Especulativo (Agente Negativo)" ;
+    rdfs:subClassOf rec:Agente_de_Mercado .
+
+rec:Agente_de_Mercado a owl:Class ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
 rec:EspacoDeConflito a owl:Class ;
     rdfs:label "Espaço de Conflito" .
 
 rec:InstrumentoAcao a owl:Class ;
     rdfs:label "Instrumento & Ação" .
 
-rec:VetoInacao a owl:Class ;
-    rdfs:label "Veto & Inaction" ;
-    rdfs:comment "A classe de todas as ações ou omissões que impedem o desenvolvimento urbano justo." .
+rec:AgenteUrbano a owl:Class ;
+    rdfs:label "Agente Urbano" .
 
 rec:DanoUrbano a owl:Class ;
     rdfs:label "Dano & Consequência" .
