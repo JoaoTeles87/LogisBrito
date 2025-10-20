@@ -1,0 +1,74 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <http://recife.leg.br/ontologia-conflito#> .
+
+rec:Arrecadacao_Perdida a owl:Class ;
+    rdfs:label "Arrecadação Perdida" ;
+    rdfs:subClassOf rec:DanoUrbano .
+
+rec:Caos_Funcional a owl:Class ;
+    rdfs:label "Caos Funcional" ;
+    rdfs:subClassOf rec:DanoUrbano .
+
+rec:Centro_Ocioso a owl:Class ;
+    rdfs:label "Centro Ocioso" ;
+    rdfs:subClassOf rec:EspacoDeConflito .
+
+rec:Doenca_e_Morte a owl:Class ;
+    rdfs:label "Doença e Morte" ;
+    rdfs:subClassOf rec:DanoUrbano .
+
+rec:Elite_Proprietaria a owl:Class ;
+    rdfs:label "Elite Proprietária" ;
+    rdfs:subClassOf rec:VetoInacao .
+
+rec:Estado_Inativo a owl:Class ;
+    rdfs:label "Estado Inativo" ;
+    rdfs:subClassOf rec:VetoInacao .
+
+rec:OODC a owl:Class ;
+    rdfs:label "OODC - Outorga Onerosa do Direito de Construir" ;
+    rdfs:subClassOf rec:InstrumentoAcao .
+
+rec:PEUC a owl:Class ;
+    rdfs:label "PEUC - Parcelamento, Edificação ou Utilização Compulsórios" ;
+    rdfs:subClassOf rec:InstrumentoAcao .
+
+rec:ZEIS a owl:Class ;
+    rdfs:label "ZEIS - Zona Especial de Interesse Social" ;
+    rdfs:subClassOf rec:EspacoDeConflito .
+
+rec:causa_direta a owl:ObjectProperty ;
+    rdfs:comment "Relação causal: X causa diretamente Y. (Ex: Inação causa Dano)" .
+
+rec:em_antagonismo_com a owl:SymmetricProperty ;
+    rdfs:comment "Relação de disputa: X e Y têm objetivos conflitantes." .
+
+rec:financia_a_reversao a owl:ObjectProperty ;
+    rdfs:comment "Relação instrumental: X gera recursos para financiar a solução Y." .
+
+rec:impede a owl:ObjectProperty ;
+    rdfs:comment "Relação de bloqueio: X impede a ocorrência/aplicação de Y. (Ex: Veto impede Ação)" .
+
+rec:metaQuantificavel a owl:DatatypeProperty ;
+    rdfs:comment "Define um contrato de desempenho numérico para um instrumento." .
+
+rec:nivelDeAcao a owl:DatatypeProperty ;
+    rdfs:comment "Classifica a 'audácia' de um instrumento: Passivo, Punitivo_Moderado, Punitivo_Agressivo." .
+
+rec:reverte_por_forca a owl:ObjectProperty ;
+    rdfs:comment "Relação de poder: X reverte o efeito de Y. (Ex: Instrumento reverte Veto)" .
+
+rec:EspacoDeConflito a owl:Class ;
+    rdfs:label "Espaço de Conflito" .
+
+rec:InstrumentoAcao a owl:Class ;
+    rdfs:label "Instrumento & Ação" .
+
+rec:VetoInacao a owl:Class ;
+    rdfs:label "Veto & Inaction" ;
+    rdfs:comment "A classe de todas as ações ou omissões que impedem o desenvolvimento urbano justo." .
+
+rec:DanoUrbano a owl:Class ;
+    rdfs:label "Dano & Consequência" .
+

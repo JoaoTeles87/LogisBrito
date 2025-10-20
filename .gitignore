@@ -121,9 +121,3 @@ dmypy.json
 
 # JetBrains
 .idea/
-
-# Data files
-data/
-
-# Notebooks
-notebooks/
