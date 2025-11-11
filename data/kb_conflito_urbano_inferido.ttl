@@ -1,0 +1,576 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <http://recife.leg.br/ontologia-conflito#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+rec:Lei_do_PREZEIS_1995 a rec:InstrumentoAcao,
+        owl:Thing ;
+    rdfs:label "Lei do PREZEIS (1995)" ;
+    owl:sameAs rec:Lei_do_PREZEIS_1995 .
+
+rec:Lei_do_Remembramento_2020 a owl:NamedIndividual ;
+    rdfs:label "Lei do Remembramento (2020)" ;
+    owl:sameAs rec:Lei_do_Remembramento_2020 .
+
+rec:Prefeitura_do_Recife a rec:AgenteUrbano,
+        rec:PoderPublico,
+        owl:Thing ;
+    rdfs:label "Prefeitura do Recife" ;
+    rec:executaAcao rec:Acao_Omitir_Fiscalizacao_PREZEIS,
+        rec:Acao_Propor_Lei_PREZEIS_1995,
+        rec:Acao_Sancionar_Lei_18772_2020 ;
+    owl:sameAs rec:Prefeitura_do_Recife .
+
+rec:ZEIS_Coque a rec:EspacoDeConflito,
+        rec:ZEIS,
+        owl:Thing ;
+    rdfs:label "ZEIS do Coque" ;
+    owl:sameAs rec:ZEIS_Coque .
+
+rec:em_antagonismo_com a owl:SymmetricProperty ;
+    rdfs:domain rec:AgenteUrbano,
+        owl:Thing ;
+    rdfs:range rec:AgenteUrbano,
+        owl:Thing ;
+    owl:sameAs rec:em_antagonismo_com .
+
+rec:reverte_por_forca owl:sameAs rec:reverte_por_forca .
+
+rdf:HTML a rdfs:Datatype ;
+    owl:sameAs rdf:HTML .
+
+rdf:PlainLiteral a rdfs:Datatype ;
+    owl:sameAs rdf:PlainLiteral .
+
+rdf:XMLLiteral a rdfs:Datatype ;
+    owl:sameAs rdf:XMLLiteral .
+
+rdf:langString a rdfs:Datatype ;
+    owl:sameAs rdf:langString .
+
+rdf:type owl:sameAs rdf:type .
+
+rdfs:Literal a rdfs:Datatype ;
+    owl:sameAs rdfs:Literal .
+
+rdfs:comment a owl:AnnotationProperty ;
+    owl:sameAs rdfs:comment .
+
+rdfs:domain owl:sameAs rdfs:domain .
+
+rdfs:isDefinedBy a owl:AnnotationProperty ;
+    owl:sameAs rdfs:isDefinedBy .
+
+rdfs:label a owl:AnnotationProperty ;
+    owl:sameAs rdfs:label .
+
+rdfs:range owl:sameAs rdfs:range .
+
+rdfs:seeAlso a owl:AnnotationProperty ;
+    owl:sameAs rdfs:seeAlso .
+
+rdfs:subClassOf owl:sameAs rdfs:subClassOf .
+
+rdfs:subPropertyOf owl:sameAs rdfs:subPropertyOf .
+
+xsd:NCName a rdfs:Datatype ;
+    owl:sameAs xsd:NCName .
+
+xsd:NMTOKEN a rdfs:Datatype ;
+    owl:sameAs xsd:NMTOKEN .
+
+xsd:Name a rdfs:Datatype ;
+    owl:sameAs xsd:Name .
+
+xsd:anyURI a rdfs:Datatype ;
+    owl:sameAs xsd:anyURI .
+
+xsd:base64Binary a rdfs:Datatype ;
+    owl:sameAs xsd:base64Binary .
+
+xsd:boolean a rdfs:Datatype ;
+    owl:sameAs xsd:boolean .
+
+xsd:byte a rdfs:Datatype ;
+    owl:sameAs xsd:byte .
+
+xsd:date a rdfs:Datatype ;
+    owl:sameAs xsd:date .
+
+xsd:dateTime a rdfs:Datatype ;
+    owl:sameAs xsd:dateTime .
+
+xsd:dateTimeStamp a rdfs:Datatype ;
+    owl:sameAs xsd:dateTimeStamp .
+
+xsd:decimal a rdfs:Datatype ;
+    owl:sameAs xsd:decimal .
+
+xsd:double a rdfs:Datatype ;
+    owl:sameAs xsd:double .
+
+xsd:float a rdfs:Datatype ;
+    owl:sameAs xsd:float .
+
+xsd:hexBinary a rdfs:Datatype ;
+    owl:sameAs xsd:hexBinary .
+
+xsd:int a rdfs:Datatype ;
+    owl:sameAs xsd:int .
+
+xsd:integer a rdfs:Datatype ;
+    owl:sameAs xsd:integer .
+
+xsd:language a rdfs:Datatype ;
+    owl:sameAs xsd:language .
+
+xsd:long a rdfs:Datatype ;
+    owl:sameAs xsd:long .
+
+xsd:negativeInteger a rdfs:Datatype ;
+    owl:sameAs xsd:negativeInteger .
+
+xsd:nonNegativeInteger a rdfs:Datatype ;
+    owl:sameAs xsd:nonNegativeInteger .
+
+xsd:nonPositiveInteger a rdfs:Datatype ;
+    owl:sameAs xsd:nonPositiveInteger .
+
+xsd:normalizedString a rdfs:Datatype ;
+    owl:sameAs xsd:normalizedString .
+
+xsd:positiveInteger a rdfs:Datatype ;
+    owl:sameAs xsd:positiveInteger .
+
+xsd:short a rdfs:Datatype ;
+    owl:sameAs xsd:short .
+
+xsd:string a rdfs:Datatype ;
+    owl:sameAs xsd:string .
+
+xsd:time a rdfs:Datatype ;
+    owl:sameAs xsd:time .
+
+xsd:token a rdfs:Datatype ;
+    owl:sameAs xsd:token .
+
+xsd:unsignedByte a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedByte .
+
+xsd:unsignedInt a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedInt .
+
+xsd:unsignedLong a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedLong .
+
+xsd:unsignedShort a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedShort .
+
+owl:backwardCompatibleWith a owl:AnnotationProperty ;
+    owl:sameAs owl:backwardCompatibleWith .
+
+owl:deprecated a owl:AnnotationProperty ;
+    owl:sameAs owl:deprecated .
+
+owl:disjointWith owl:sameAs owl:disjointWith .
+
+owl:equivalentClass owl:sameAs owl:equivalentClass .
+
+owl:equivalentProperty owl:sameAs owl:equivalentProperty .
+
+owl:incompatibleWith a owl:AnnotationProperty ;
+    owl:sameAs owl:incompatibleWith .
+
+owl:priorVersion a owl:AnnotationProperty ;
+    owl:sameAs owl:priorVersion .
+
+owl:sameAs owl:sameAs owl:sameAs .
+
+owl:versionInfo a owl:AnnotationProperty ;
+    owl:sameAs owl:versionInfo .
+
+rec:Acao_Omitir_Fiscalizacao_PREZEIS a rec:AcaoUrbana,
+        rec:Acao_Impeditiva,
+        owl:Thing ;
+    rdfs:label "Omitir Fiscalização do PREZEIS" ;
+    rec:causa_direta rec:Risco_de_Gentrificacao_Coque ;
+    owl:sameAs rec:Acao_Omitir_Fiscalizacao_PREZEIS .
+
+rec:Acao_Propor_Lei_PREZEIS_1995 a rec:AcaoUrbana,
+        rec:Acao_Propositiva,
+        owl:Thing ;
+    rdfs:label "Propor Lei do PREZEIS (1995)" ;
+    rec:reverte_por_forca rec:Risco_de_Gentrificacao_Coque ;
+    owl:sameAs rec:Acao_Propor_Lei_PREZEIS_1995 .
+
+rec:Agentes_Especulativos_da_Orla a rec:AgenteUrbano,
+        rec:Agente_Especulativo,
+        rec:Agente_de_Mercado,
+        owl:Thing ;
+    rdfs:label "Agentes Especulativos da Orla" ;
+    rec:em_antagonismo_com rec:Comunidade_do_Coque ;
+    rec:executaAcao rec:Acao_Sancionar_Lei_18772_2020 ;
+    owl:sameAs rec:Agentes_Especulativos_da_Orla .
+
+rec:Comunidade_do_Coque a rec:AgenteUrbano,
+        rec:Comunidade,
+        owl:Thing ;
+    rdfs:label "Comunidade do Coque" ;
+    rec:em_antagonismo_com rec:Agentes_Especulativos_da_Orla ;
+    owl:sameAs rec:Comunidade_do_Coque .
+
+owl:NamedIndividual owl:sameAs owl:NamedIndividual .
+
+owl:SymmetricProperty owl:sameAs owl:SymmetricProperty .
+
+"Agente Especulativo (Papel Negativo)" owl:sameAs "Agente Especulativo (Papel Negativo)" .
+
+"Agente Urbano" owl:sameAs "Agente Urbano" .
+
+"Agente de Mercado" owl:sameAs "Agente de Mercado" .
+
+"Agentes Especulativos da Orla" owl:sameAs "Agentes Especulativos da Orla" .
+
+"Arrecadação Aumentada" owl:sameAs "Arrecadação Aumentada" .
+
+"Arrecadação Perdida" owl:sameAs "Arrecadação Perdida" .
+
+"Ação Impeditiva (Veto/Inação)" owl:sameAs "Ação Impeditiva (Veto/Inação)" .
+
+"Ação Propositiva" owl:sameAs "Ação Propositiva" .
+
+"Ação Urbana" owl:sameAs "Ação Urbana" .
+
+"Benefício Urbano" owl:sameAs "Benefício Urbano" .
+
+"Caos Funcional" owl:sameAs "Caos Funcional" .
+
+"Centro Ocioso" owl:sameAs "Centro Ocioso" .
+
+"Comunidade" owl:sameAs "Comunidade" .
+
+"Comunidade do Coque" owl:sameAs "Comunidade do Coque" .
+
+"Dano Urbano" owl:sameAs "Dano Urbano" .
+
+"Dignidade Social" owl:sameAs "Dignidade Social" .
+
+"Doença e Morte" owl:sameAs "Doença e Morte" .
+
+"Espaço de Conflito" owl:sameAs "Espaço de Conflito" .
+
+"Instrumento & Ação" owl:sameAs "Instrumento & Ação" .
+
+"Investidor Desenvolvedor (Papel Positivo)" owl:sameAs "Investidor Desenvolvedor (Papel Positivo)" .
+
+"Lei do PREZEIS (1995)" owl:sameAs "Lei do PREZEIS (1995)" .
+
+"Lei do Remembramento (2020)" owl:sameAs "Lei do Remembramento (2020)" .
+
+"OODC" owl:sameAs "OODC" .
+
+"Omitir Fiscalização do PREZEIS" owl:sameAs "Omitir Fiscalização do PREZEIS" .
+
+"Ordem Funcional" owl:sameAs "Ordem Funcional" .
+
+"PEUC" owl:sameAs "PEUC" .
+
+"Poder Público" owl:sameAs "Poder Público" .
+
+"Prefeitura do Recife" owl:sameAs "Prefeitura do Recife" .
+
+"Propor Lei do PREZEIS (1995)" owl:sameAs "Propor Lei do PREZEIS (1995)" .
+
+"Risco de Gentrificação no Coque" owl:sameAs "Risco de Gentrificação no Coque" .
+
+"Sancionar Lei do Remembramento (2020)" owl:sameAs "Sancionar Lei do Remembramento (2020)" .
+
+"ZEIS" owl:sameAs "ZEIS" .
+
+"ZEIS do Coque" owl:sameAs "ZEIS do Coque" .
+
+rec:Acao_Sancionar_Lei_18772_2020 a rec:AcaoUrbana,
+        rec:Acao_Impeditiva,
+        owl:Thing ;
+    rdfs:label "Sancionar Lei do Remembramento (2020)" ;
+    rec:causa_direta rec:Risco_de_Gentrificacao_Coque ;
+    owl:sameAs rec:Acao_Sancionar_Lei_18772_2020 .
+
+rec:causa_direta a owl:ObjectProperty ;
+    rdfs:domain rec:AcaoUrbana,
+        rec:Acao_Impeditiva,
+        owl:Thing ;
+    rdfs:range rec:DanoUrbano,
+        owl:Thing ;
+    rdfs:subPropertyOf rec:causa_direta ;
+    owl:equivalentProperty rec:causa_direta ;
+    owl:sameAs rec:causa_direta .
+
+rec:e_reversao_de a owl:ObjectProperty ;
+    rdfs:domain rec:BeneficioUrbano,
+        owl:Thing ;
+    rdfs:range rec:DanoUrbano,
+        owl:Thing ;
+    rdfs:subPropertyOf rec:e_reversao_de ;
+    owl:equivalentProperty rec:e_reversao_de ;
+    owl:sameAs rec:e_reversao_de .
+
+rec:executaAcao a owl:ObjectProperty ;
+    rdfs:domain rec:AgenteUrbano,
+        owl:Thing ;
+    rdfs:range rec:AcaoUrbana,
+        owl:Thing ;
+    rdfs:subPropertyOf rec:executaAcao ;
+    owl:equivalentProperty rec:executaAcao ;
+    owl:sameAs rec:executaAcao .
+
+rec:gera_beneficio a owl:ObjectProperty ;
+    rdfs:domain rec:AcaoUrbana,
+        rec:Acao_Propositiva,
+        owl:Thing ;
+    rdfs:range rec:BeneficioUrbano,
+        owl:Thing ;
+    rdfs:subPropertyOf rec:gera_beneficio ;
+    owl:equivalentProperty rec:gera_beneficio ;
+    owl:sameAs rec:gera_beneficio .
+
+rec:utilizaInstrumento a owl:ObjectProperty ;
+    rdfs:domain rec:AcaoUrbana,
+        rec:Acao_Propositiva,
+        owl:Thing ;
+    rdfs:range rec:InstrumentoAcao,
+        owl:Thing ;
+    rdfs:subPropertyOf rec:utilizaInstrumento ;
+    owl:equivalentProperty rec:utilizaInstrumento ;
+    owl:sameAs rec:utilizaInstrumento .
+
+owl:Nothing a owl:Class ;
+    rdfs:subClassOf rec:AcaoUrbana,
+        rec:Acao_Impeditiva,
+        rec:Acao_Propositiva,
+        rec:AgenteUrbano,
+        rec:Agente_Especulativo,
+        rec:Agente_de_Mercado,
+        rec:Arrecadacao_Aumentada,
+        rec:Arrecadacao_Perdida,
+        rec:BeneficioUrbano,
+        rec:Caos_Funcional,
+        rec:Centro_Ocioso,
+        rec:Comunidade,
+        rec:DanoUrbano,
+        rec:Dignidade_Social,
+        rec:Doenca_e_Morte,
+        rec:EspacoDeConflito,
+        rec:InstrumentoAcao,
+        rec:Investidor_Desenvolvedor,
+        rec:OODC,
+        rec:Ordem_Funcional,
+        rec:PEUC,
+        rec:PoderPublico,
+        rec:ZEIS,
+        owl:Nothing,
+        owl:Thing ;
+    owl:equivalentClass owl:Nothing ;
+    owl:sameAs owl:Nothing .
+
+rec:Arrecadacao_Aumentada a owl:Class ;
+    rdfs:label "Arrecadação Aumentada" ;
+    rdfs:subClassOf rec:Arrecadacao_Aumentada,
+        rec:BeneficioUrbano,
+        owl:Thing ;
+    owl:equivalentClass rec:Arrecadacao_Aumentada ;
+    owl:sameAs rec:Arrecadacao_Aumentada .
+
+rec:Arrecadacao_Perdida a owl:Class ;
+    rdfs:label "Arrecadação Perdida" ;
+    rdfs:subClassOf rec:Arrecadacao_Perdida,
+        rec:DanoUrbano,
+        owl:Thing ;
+    owl:equivalentClass rec:Arrecadacao_Perdida ;
+    owl:sameAs rec:Arrecadacao_Perdida .
+
+rec:Caos_Funcional a owl:Class ;
+    rdfs:label "Caos Funcional" ;
+    rdfs:subClassOf rec:Caos_Funcional,
+        rec:DanoUrbano,
+        owl:Thing ;
+    owl:equivalentClass rec:Caos_Funcional ;
+    owl:sameAs rec:Caos_Funcional .
+
+rec:Centro_Ocioso a owl:Class ;
+    rdfs:label "Centro Ocioso" ;
+    rdfs:subClassOf rec:Centro_Ocioso,
+        rec:EspacoDeConflito,
+        owl:Thing ;
+    owl:equivalentClass rec:Centro_Ocioso ;
+    owl:sameAs rec:Centro_Ocioso .
+
+rec:Dignidade_Social a owl:Class ;
+    rdfs:label "Dignidade Social" ;
+    rdfs:subClassOf rec:BeneficioUrbano,
+        rec:Dignidade_Social,
+        owl:Thing ;
+    owl:equivalentClass rec:Dignidade_Social ;
+    owl:sameAs rec:Dignidade_Social .
+
+rec:Doenca_e_Morte a owl:Class ;
+    rdfs:label "Doença e Morte" ;
+    rdfs:subClassOf rec:DanoUrbano,
+        rec:Doenca_e_Morte,
+        owl:Thing ;
+    owl:equivalentClass rec:Doenca_e_Morte ;
+    owl:sameAs rec:Doenca_e_Morte .
+
+rec:Investidor_Desenvolvedor a owl:Class ;
+    rdfs:label "Investidor Desenvolvedor (Papel Positivo)" ;
+    rdfs:subClassOf rec:AgenteUrbano,
+        rec:Agente_de_Mercado,
+        rec:Investidor_Desenvolvedor,
+        owl:Thing ;
+    owl:disjointWith rec:Agente_Especulativo ;
+    owl:equivalentClass rec:Investidor_Desenvolvedor ;
+    owl:sameAs rec:Investidor_Desenvolvedor .
+
+rec:OODC a owl:Class ;
+    rdfs:label "OODC" ;
+    rdfs:subClassOf rec:InstrumentoAcao,
+        rec:OODC,
+        owl:Thing ;
+    owl:equivalentClass rec:OODC ;
+    owl:sameAs rec:OODC .
+
+rec:Ordem_Funcional a owl:Class ;
+    rdfs:label "Ordem Funcional" ;
+    rdfs:subClassOf rec:BeneficioUrbano,
+        rec:Ordem_Funcional,
+        owl:Thing ;
+    owl:equivalentClass rec:Ordem_Funcional ;
+    owl:sameAs rec:Ordem_Funcional .
+
+rec:PEUC a owl:Class ;
+    rdfs:label "PEUC" ;
+    rdfs:subClassOf rec:InstrumentoAcao,
+        rec:PEUC,
+        owl:Thing ;
+    owl:equivalentClass rec:PEUC ;
+    owl:sameAs rec:PEUC .
+
+rec:Risco_de_Gentrificacao_Coque a rec:DanoUrbano,
+        owl:Thing ;
+    rdfs:label "Risco de Gentrificação no Coque" ;
+    owl:sameAs rec:Risco_de_Gentrificacao_Coque .
+
+rec:Comunidade a owl:Class ;
+    rdfs:label "Comunidade" ;
+    rdfs:subClassOf rec:AgenteUrbano,
+        rec:Comunidade,
+        owl:Thing ;
+    owl:equivalentClass rec:Comunidade ;
+    owl:sameAs rec:Comunidade .
+
+rec:PoderPublico a owl:Class ;
+    rdfs:label "Poder Público" ;
+    rdfs:subClassOf rec:AgenteUrbano,
+        rec:PoderPublico,
+        owl:Thing ;
+    owl:equivalentClass rec:PoderPublico ;
+    owl:sameAs rec:PoderPublico .
+
+rec:ZEIS a owl:Class ;
+    rdfs:label "ZEIS" ;
+    rdfs:subClassOf rec:EspacoDeConflito,
+        rec:ZEIS,
+        owl:Thing ;
+    owl:equivalentClass rec:ZEIS ;
+    owl:sameAs rec:ZEIS .
+
+rec:Agente_Especulativo a owl:Class ;
+    rdfs:label "Agente Especulativo (Papel Negativo)" ;
+    rdfs:subClassOf rec:AgenteUrbano,
+        rec:Agente_Especulativo,
+        rec:Agente_de_Mercado,
+        owl:Thing ;
+    owl:equivalentClass rec:Agente_Especulativo ;
+    owl:sameAs rec:Agente_Especulativo .
+
+owl:ObjectProperty owl:sameAs owl:ObjectProperty .
+
+rec:Acao_Propositiva a owl:Class ;
+    rdfs:label "Ação Propositiva" ;
+    rdfs:subClassOf rec:AcaoUrbana,
+        rec:Acao_Propositiva,
+        owl:Thing ;
+    owl:disjointWith rec:Acao_Impeditiva ;
+    owl:equivalentClass rec:Acao_Propositiva ;
+    owl:sameAs rec:Acao_Propositiva .
+
+rec:Agente_de_Mercado a owl:Class ;
+    rdfs:label "Agente de Mercado" ;
+    rdfs:subClassOf rec:AgenteUrbano,
+        rec:Agente_de_Mercado,
+        owl:Thing ;
+    owl:equivalentClass rec:Agente_de_Mercado ;
+    owl:sameAs rec:Agente_de_Mercado .
+
+rec:EspacoDeConflito a owl:Class ;
+    rdfs:label "Espaço de Conflito" ;
+    rdfs:subClassOf rec:EspacoDeConflito,
+        owl:Thing ;
+    owl:equivalentClass rec:EspacoDeConflito ;
+    owl:sameAs rec:EspacoDeConflito .
+
+rec:Acao_Impeditiva a owl:Class ;
+    rdfs:label "Ação Impeditiva (Veto/Inação)" ;
+    rdfs:subClassOf rec:AcaoUrbana,
+        rec:Acao_Impeditiva,
+        owl:Thing ;
+    owl:equivalentClass rec:Acao_Impeditiva ;
+    owl:sameAs rec:Acao_Impeditiva .
+
+rec:InstrumentoAcao a owl:Class ;
+    rdfs:label "Instrumento & Ação" ;
+    rdfs:subClassOf rec:InstrumentoAcao,
+        owl:Thing ;
+    owl:equivalentClass rec:InstrumentoAcao ;
+    owl:sameAs rec:InstrumentoAcao .
+
+rec:BeneficioUrbano a owl:Class ;
+    rdfs:label "Benefício Urbano" ;
+    rdfs:subClassOf rec:BeneficioUrbano,
+        owl:Thing ;
+    owl:equivalentClass rec:BeneficioUrbano ;
+    owl:sameAs rec:BeneficioUrbano .
+
+rec:DanoUrbano a owl:Class ;
+    rdfs:label "Dano Urbano" ;
+    rdfs:subClassOf rec:DanoUrbano,
+        owl:Thing ;
+    owl:equivalentClass rec:DanoUrbano ;
+    owl:sameAs rec:DanoUrbano .
+
+owl:AnnotationProperty owl:sameAs owl:AnnotationProperty .
+
+rec:AcaoUrbana a owl:Class ;
+    rdfs:label "Ação Urbana" ;
+    rdfs:subClassOf rec:AcaoUrbana,
+        owl:Thing ;
+    owl:equivalentClass rec:AcaoUrbana ;
+    owl:sameAs rec:AcaoUrbana .
+
+rec:AgenteUrbano a owl:Class ;
+    rdfs:label "Agente Urbano" ;
+    rdfs:subClassOf rec:AgenteUrbano,
+        owl:Thing ;
+    owl:equivalentClass rec:AgenteUrbano ;
+    owl:sameAs rec:AgenteUrbano .
+
+owl:Class owl:sameAs owl:Class .
+
+rdfs:Datatype owl:sameAs rdfs:Datatype .
+
+owl:Thing a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    owl:equivalentClass owl:Thing ;
+    owl:sameAs owl:Thing .
+
