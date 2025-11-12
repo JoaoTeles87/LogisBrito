@@ -1,0 +1,95 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <http://recife.leg.br/ontologia-conflito#> .
+
+rec:Camara_Municipal_do_Recife a rec:AgenteLegislativo ;
+    rdfs:label "Câmara Municipal do Recife" ;
+    rec:executaAcao rec:Acao_Criar_Lei_PREZEIS .
+
+rec:Comunidade a owl:Class ;
+    rdfs:label "Comunidade" ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
+rec:Lei_do_PREZEIS_1995 a rec:LegislacaoUrbana ;
+    rdfs:label "Lei do PREZEIS (1995)" ;
+    rec:conflitaCom rec:Lei_do_Remembramento_2020 .
+
+rec:Prefeitura_do_Recife a rec:AgenteExecutivo ;
+    rdfs:label "Prefeitura do Recife" ;
+    rec:executaAcao rec:Acao_Sancionar_Lei_Remembramento .
+
+rec:causa_direta a owl:ObjectProperty ;
+    rdfs:domain rec:Acao_Impeditiva ;
+    rdfs:range rec:DanoUrbano .
+
+rec:conflitaCom a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain rec:Norma ;
+    rdfs:range rec:Norma .
+
+rec:executaAcao a owl:ObjectProperty ;
+    rdfs:domain rec:AgenteUrbano ;
+    rdfs:range rec:AcaoUrbana .
+
+rec:gera_beneficio a owl:ObjectProperty ;
+    rdfs:domain rec:Acao_Propositiva ;
+    rdfs:range rec:BeneficioUrbano .
+
+rec:Acao_Criar_Lei_PREZEIS a rec:Acao_Propositiva ;
+    rdfs:label "Criar Lei do PREZEIS" ;
+    rec:gera_beneficio rec:Direito_a_Moradia .
+
+rec:Acao_Sancionar_Lei_Remembramento a rec:Acao_Impeditiva ;
+    rdfs:label "Sancionar Lei do Remembramento" ;
+    rec:causa_direta rec:Risco_de_Gentrificacao .
+
+rec:AgenteExecutivo a owl:Class ;
+    rdfs:label "AgenteExecutivo" ;
+    rdfs:subClassOf rec:PoderPublico .
+
+rec:AgenteLegislativo a owl:Class ;
+    rdfs:label "AgenteLegislativo" ;
+    rdfs:subClassOf rec:PoderPublico .
+
+rec:Direito_a_Moradia a rec:BeneficioUrbano ;
+    rdfs:label "Direito à Moradia" .
+
+rec:Lei_do_Remembramento_2020 a rec:LegislacaoUrbana ;
+    rdfs:label "Lei do Remembramento (2020)" .
+
+rec:Risco_de_Gentrificacao a rec:DanoUrbano ;
+    rdfs:label "Risco de Gentrificação" .
+
+rec:Acao_Propositiva a owl:Class ;
+    rdfs:label "Acao Propositiva" ;
+    rdfs:subClassOf rec:AcaoUrbana ;
+    owl:disjointWith rec:Acao_Impeditiva .
+
+rec:DanoUrbano a owl:Class ;
+    rdfs:label "DanoUrbano" ;
+    owl:disjointWith rec:BeneficioUrbano .
+
+rec:LegislacaoUrbana a owl:Class ;
+    rdfs:label "LegislacaoUrbana" ;
+    rdfs:subClassOf rec:Norma .
+
+rec:PoderPublico a owl:Class ;
+    rdfs:label "PoderPublico" ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
+rec:AcaoUrbana a owl:Class ;
+    rdfs:label "AcaoUrbana" .
+
+rec:Acao_Impeditiva a owl:Class ;
+    rdfs:label "Acao Impeditiva" ;
+    rdfs:subClassOf rec:AcaoUrbana .
+
+rec:AgenteUrbano a owl:Class ;
+    rdfs:label "AgenteUrbano" .
+
+rec:BeneficioUrbano a owl:Class ;
+    rdfs:label "BeneficioUrbano" .
+
+rec:Norma a owl:Class ;
+    rdfs:label "Norma" .
+

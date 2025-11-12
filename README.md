@@ -1,34 +1,90 @@
-# LogisBrito: A Logical Oracle for Recife's Urban Legislation
+# LogisBrito: Um Oráculo Lógico para a Legislação Urbana do Recife
 
-**Project Status:** Initial Research & Development | University Project (CIN-UFPE)
+**Status do Projeto:** Prova de Conceito (Arquitetura V5 Estável) | Projeto Acadêmico (CIn-UFPE)
 
-## About the Project
+## Sobre o Projeto
 
-`LogisBrito` is a proof-of-concept expert system designed to serve as a **decision-support tool for urban and social policy** in Recife, Brazil. Named after the visionary urbanist Saturnino de Brito, this project aims to create a logical and auditable knowledge base from the city's complex web of urban legislation.
+`LogisBrito` é um sistema especialista e prova de conceito, desenhado para servir como uma **ferramenta de apoio à decisão para políticas urbanas e sociais** na cidade do Recife. Nomeado em homenagem ao urbanista visionário Saturnino de Brito, este projeto visa criar uma base de conhecimento lógica e auditável a partir da complexa teia de legislação urbana da cidade.
 
-Our primary goal is to address critical urban challenges, such as the requalification of at-risk social housing zones (ZEIS) and the sustainable regeneration of underutilized historical areas, like the Santo Antônio neighborhood.
+## O Problema Central
 
-## The Core Problem
+O desenvolvimento urbano do Recife é governado por camadas de planos diretores históricos, decretos e leis de preservação. Esta estrutura legal é complexa, muitas vezes contraditória e inacessível a cidadãos, arquitetos e até mesmo ao corpo técnico da prefeitura.
 
-Recife's urban development is governed by layers of historical master plans, decrees, and preservation laws. This legal framework is complex, often contradictory, and inaccessible to citizens, architects, and even technical staff. Answering a seemingly simple question like "What incentives are available to sustainably retrofit this specific historical building for social housing?" can require weeks of legal research.
+Modelos probabilísticos como LLMs são inadequados para este domínio, pois não podem garantir precisão factual, fornecer raciocínio auditável ou detectar conflitos lógicos dentro do código legal — riscos inaceitáveis ao lidar com conformidade legal e políticas públicas.
 
-Probabilistic models like LLMs are ill-suited for this domain, as they cannot guarantee factual accuracy, provide auditable reasoning, or detect logical conflicts within the legal code—risks that are unacceptable when dealing with legal compliance and public policy.
+## Nossa Abordagem: Lógica sobre LLMs
 
-## Our Approach: Logic over LLMs
+Este projeto adota uma abordagem de **IA simbólica**, construindo um grafo de conhecimento baseado na **Web Ontology Language (OWL DL)**.
 
-This project takes a **symbolic AI** approach, building a knowledge graph based on the **Web Ontology Language (OWL DL)**.
+Em vez de gerar texto provável, nosso sistema:
+1.  **Representa** as leis urbanas como um conjunto de fatos e regras lógicas e precisas.
+2.  **Usa** um reasoner (inferidor) para fazer deduções lógicas com base nesse conhecimento.
+3.  **Fornece** respostas que são totalmente auditáveis, rastreando cada conclusão até o artigo de lei específico de onde se originou.
 
-Instead of generating probable text, our system:
-1.  **Represents** urban laws as a set of precise, logical facts and rules.
-2.  **Uses** a reasoner to make logical deductions based on this knowledge.
-3.  **Provides** answers that are fully auditable, tracing every conclusion back to the specific article of law it originated from.
-4.  **Enables** "what-if" policy simulations, allowing users to see the logical impact of introducing a new rule or incentive.
+Isso torna o `LogisBrito` um **oráculo verificável**, e não um gerador conversacional.
 
-This makes the `LogisBrito` a **verifiable oracle**, not a conversational generator.
+---
 
-## Technology Stack
+## Arquitetura (Schema V5)
 
-* **Language:** Python
-* **Knowledge Representation:** `rdflib` for building the RDF graph and modeling the OWL ontology.
-* **Query Language:** SPARQL for querying the knowledge base.
-* **Prototyping:** JupyterLab
+A versão atual da ontologia (V5) modela o conflito urbano através de eixos principais: **Agentes**, **Ações**, **Danos/Benefícios** e **Normas**.
+
+A inovação chave do Schema V5 é a introdução da classe `Norma` e da propriedade simétrica `rec:conflitaCom`. Isso nos permite modelar explicitamente conflitos lógicos entre diferentes instrumentos legais, como duas leis que se contradizem.
+
+Classes principais:
+- `AgenteUrbano`
+  - `PoderPublico`
+    - `AgenteExecutivo` (ex: Prefeitura)
+    - `AgenteLegislativo` (ex: Câmara Municipal)
+- `AcaoUrbana`
+  - `Acao_Propositiva` (gera benefício)
+  - `Acao_Impeditiva` (causa dano)
+- `Norma`
+  - `LegislacaoUrbana` (ex: Leis, Decretos)
+- `DanoUrbano` e `BeneficioUrbano`
+
+## Como Usar (Guia Rápido)
+
+A arquitetura do projeto segue o princípio de **"Pipeline como Código"**. A lógica de construção da base de conhecimento está em scripts Python, e o notebook Jupyter é usado para orquestração e análise.
+
+#### 1. Instalação
+Clone o repositório e instale as dependências:
+```bash
+pip install -r requirements.txt
+```
+
+#### 2. Executando a Pipeline
+Abra e execute o notebook principal:
+`notebooks/ontologia_conflito.ipynb`
+
+O notebook é autoexplicativo e está dividido em passos:
+- **Passo 1:** Executa o script `src/build_knowledge_base.py`, que automaticamente gera o schema, popula as instâncias e executa a inferência, salvando os resultados em `data/`.
+- **Passo 2:** Carrega o grafo final já inferido (`kb_conflito_v5_inferido.ttl`).
+- **Passo 3:** Executa as consultas SPARQL para extrair os insights e provar as hipóteses de conflito.
+- **Passo 4:** Gera uma visualização interativa do grafo de conhecimento.
+
+## Resultados da Análise (V5)
+
+A execução da pipeline no notebook prova as seguintes narrativas de conflito:
+
+1.  **Conflito Normativo Explícito**: A consulta SPARQL que utiliza a propriedade `rec:conflitaCom` **prova um conflito direto** entre a `Lei do PREZEIS (1995)` e a `Lei do Remembramento (2020)`.
+
+2.  **Cadeia de Causalidade de Dano**: A análise do grafo demonstra que a `Prefeitura do Recife` (AgenteExecutivo), ao executar a `Ação de Sancionar a Lei do Remembramento` (Ação Impeditiva), causa diretamente um `Risco de Gentrificação` (Dano Urbano).
+
+## Como Testar a Pipeline
+
+O projeto possui uma suíte de testes automatizada que valida toda a pipeline, desde a execução do script de build até a verificação dos resultados das consultas SPARQL.
+
+Para rodar os testes, execute na raiz do projeto:
+```bash
+python -m pytest -v tests/test_ontologia.py
+```
+
+## Tecnologias Utilizadas
+* **Linguagem:** Python
+* **Base de Conhecimento:** `rdflib` para modelagem RDF/OWL.
+* **Inferência:** `owlrl` para inferência OWL 2 RL.
+* **Consultas:** SPARQL para consultar o grafo.
+* **Testes:** `pytest` para testes automatizados da pipeline.
+* **Análise e Orquestração:** JupyterLab
+* **Visualização:** `pyvis` para visualização de grafos.

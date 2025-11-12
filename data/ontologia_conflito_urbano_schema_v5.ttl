@@ -1,0 +1,66 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <http://recife.leg.br/ontologia-conflito#> .
+
+rec:AgenteExecutivo a owl:Class ;
+    rdfs:label "AgenteExecutivo" ;
+    rdfs:subClassOf rec:PoderPublico .
+
+rec:AgenteLegislativo a owl:Class ;
+    rdfs:label "AgenteLegislativo" ;
+    rdfs:subClassOf rec:PoderPublico .
+
+rec:Comunidade a owl:Class ;
+    rdfs:label "Comunidade" ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
+rec:LegislacaoUrbana a owl:Class ;
+    rdfs:label "LegislacaoUrbana" ;
+    rdfs:subClassOf rec:Norma .
+
+rec:causa_direta a owl:ObjectProperty ;
+    rdfs:domain rec:Acao_Impeditiva ;
+    rdfs:range rec:DanoUrbano .
+
+rec:conflitaCom a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain rec:Norma ;
+    rdfs:range rec:Norma .
+
+rec:executaAcao a owl:ObjectProperty ;
+    rdfs:domain rec:AgenteUrbano ;
+    rdfs:range rec:AcaoUrbana .
+
+rec:gera_beneficio a owl:ObjectProperty ;
+    rdfs:domain rec:Acao_Propositiva ;
+    rdfs:range rec:BeneficioUrbano .
+
+rec:Acao_Propositiva a owl:Class ;
+    rdfs:label "Acao Propositiva" ;
+    rdfs:subClassOf rec:AcaoUrbana ;
+    owl:disjointWith rec:Acao_Impeditiva .
+
+rec:DanoUrbano a owl:Class ;
+    rdfs:label "DanoUrbano" ;
+    owl:disjointWith rec:BeneficioUrbano .
+
+rec:Acao_Impeditiva a owl:Class ;
+    rdfs:label "Acao Impeditiva" ;
+    rdfs:subClassOf rec:AcaoUrbana .
+
+rec:BeneficioUrbano a owl:Class ;
+    rdfs:label "BeneficioUrbano" .
+
+rec:PoderPublico a owl:Class ;
+    rdfs:label "PoderPublico" ;
+    rdfs:subClassOf rec:AgenteUrbano .
+
+rec:AcaoUrbana a owl:Class ;
+    rdfs:label "AcaoUrbana" .
+
+rec:AgenteUrbano a owl:Class ;
+    rdfs:label "AgenteUrbano" .
+
+rec:Norma a owl:Class ;
+    rdfs:label "Norma" .
+
