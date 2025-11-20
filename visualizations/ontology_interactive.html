@@ -1,0 +1,273 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 800px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#FF6B6B", "font": {"color": "white"}, "id": "Camara_Municipal_do_Recife", "label": "C\u00e2mara Municipal do Recife", "shape": "dot", "title": "C\u00e2mara Municipal do Recife"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Conselho_da_Cidade", "label": "Conselho da Cidade do Recife", "shape": "dot", "title": "Conselho da Cidade do Recife"}, {"color": "#FF6B6B", "font": {"color": "white"}, "id": "Prefeitura_do_Recife", "label": "Prefeitura do Recife", "shape": "dot", "title": "Prefeitura do Recife"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Comunidade_do_Coque", "label": "Comunidade do Coque", "shape": "dot", "title": "Comunidade do Coque"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "DPPC_Recife", "label": "DPPC - Diretoria de Preserva\u00e7\u00e3o do Patrim\u00f4nio Cultural", "shape": "dot", "title": "DPPC - Diretoria de Preserva\u00e7\u00e3o do Patrim\u00f4nio Cultural"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Ministerio_Publico_PE", "label": "Minist\u00e9rio P\u00fablico de Pernambuco", "shape": "dot", "title": "Minist\u00e9rio P\u00fablico de Pernambuco"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Mercado_Imobiliario_Especulativo", "label": "Mercado Imobili\u00e1rio Especulativo", "shape": "dot", "title": "Mercado Imobili\u00e1rio Especulativo"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Centro_Historico_Recife", "label": "Centro Hist\u00f3rico do Recife", "shape": "dot", "title": "Centro Hist\u00f3rico do Recife"}, {"color": "#F38181", "font": {"color": "white"}, "id": "Instrumento_TDC", "label": "TDC do Centro Hist\u00f3rico", "shape": "dot", "title": "TDC do Centro Hist\u00f3rico"}, {"color": "#FFE66D", "font": {"color": "white"}, "id": "Lei_do_Recentro_2020", "label": "Lei do Recentro (2020)", "shape": "dot", "title": "Lei do Recentro (2020)"}, {"color": "#FFE66D", "font": {"color": "white"}, "id": "PL_12_2024", "label": "Projeto de Lei 12/2024 (Remembramento em ZEIS)", "shape": "dot", "title": "Projeto de Lei 12/2024 (Remembramento em ZEIS)"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "Acao_Aplicar_PEUC", "label": "Aplicar PEUC no Centro", "shape": "dot", "title": "Aplicar PEUC no Centro"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "Acao_Criar_Lei_PREZEIS", "label": "Criar Lei do PREZEIS", "shape": "dot", "title": "Criar Lei do PREZEIS"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "Acao_Impugnar_PL12", "label": "Impugnar PL 12/2024", "shape": "dot", "title": "Impugnar PL 12/2024"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "Acao_Omitir_Fiscalizacao_PREZEIS", "label": "Omitir Fiscaliza\u00e7\u00e3o do PREZEIS", "shape": "dot", "title": "Omitir Fiscaliza\u00e7\u00e3o do PREZEIS"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Arrecadacao_Perdida_Centro", "label": "Arrecada\u00e7\u00e3o Perdida no Centro", "shape": "dot", "title": "Arrecada\u00e7\u00e3o Perdida no Centro"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Caos_Funcional_Centro", "label": "Caos Funcional no Centro", "shape": "dot", "title": "Caos Funcional no Centro"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Categoria_ZEIS_Instancia", "label": "Categoria ZEIS (Conceito Legal)", "shape": "dot", "title": "Categoria ZEIS (Conceito Legal)"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Incentivo_Recentro_Fiscal", "label": "Incentivo Fiscal do Recentro", "shape": "dot", "title": "Incentivo Fiscal do Recentro"}, {"color": "#F38181", "font": {"color": "white"}, "id": "Instrumento_PEUC", "label": "PEUC Aplicado no Centro", "shape": "dot", "title": "PEUC Aplicado no Centro"}, {"color": "#FFE66D", "font": {"color": "white"}, "id": "Lei_do_PREZEIS_1995", "label": "Lei do PREZEIS (1995)", "shape": "dot", "title": "Lei do PREZEIS (1995)"}, {"color": "#FFE66D", "font": {"color": "white"}, "id": "Lei_do_Remembramento_2020", "label": "Lei do Remembramento (2020)", "shape": "dot", "title": "Lei do Remembramento (2020)"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "ZEIS_Coque", "label": "ZEIS do Coque", "shape": "dot", "title": "ZEIS do Coque"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "Acao_Sancionar_Lei_Remembramento", "label": "Sancionar Lei do Remembramento", "shape": "dot", "title": "Sancionar Lei do Remembramento"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Arrecadacao_Aumentada_Centro", "label": "Arrecada\u00e7\u00e3o Aumentada no Centro", "shape": "dot", "title": "Arrecada\u00e7\u00e3o Aumentada no Centro"}, {"color": "#6BCF7F", "font": {"color": "white"}, "id": "Dignidade_Social_Coque", "label": "Dignidade Social no Coque", "shape": "dot", "title": "Dignidade Social no Coque"}, {"color": "#6BCF7F", "font": {"color": "white"}, "id": "Direito_a_Moradia", "label": "Direito \u00e0 Moradia", "shape": "dot", "title": "Direito \u00e0 Moradia"}, {"color": "#F38181", "font": {"color": "white"}, "id": "Instrumento_Remembramento", "label": "Remembramento de Lotes", "shape": "dot", "title": "Remembramento de Lotes"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Ordem_Funcional_Centro", "label": "Ordem Funcional no Centro", "shape": "dot", "title": "Ordem Funcional no Centro"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "IEP_Edificio_Caixa_Dagua", "label": "IEP - Edif\u00edcio Caixa d\u0027\u00c1gua", "shape": "dot", "title": "IEP - Edif\u00edcio Caixa d\u0027\u00c1gua"}, {"color": "#AA4465", "font": {"color": "white"}, "id": "Risco_de_Gentrificacao", "label": "Risco de Gentrifica\u00e7\u00e3o", "shape": "dot", "title": "Risco de Gentrifica\u00e7\u00e3o"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "ZEPH_Bairro_do_Recife", "label": "ZEPH do Bairro do Recife", "shape": "dot", "title": "ZEPH do Bairro do Recife"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Area_Recentro_Centro", "label": "\u00c1rea de Aplica\u00e7\u00e3o do Recentro no Centro", "shape": "dot", "title": "\u00c1rea de Aplica\u00e7\u00e3o do Recentro no Centro"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "aplicaIncentivoEm", "label": "aplicaIncentivoEm", "shape": "dot", "title": "aplicaIncentivoEm"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "causa_direta", "label": "causa_direta", "shape": "dot", "title": "causa_direta"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "classifica", "label": "classifica", "shape": "dot", "title": "classifica"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "coincideCom", "label": "coincideCom", "shape": "dot", "title": "coincideCom"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "conflitaCom", "label": "conflitaCom", "shape": "dot", "title": "conflitaCom"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "eImpugnadoPor", "label": "eImpugnadoPor", "shape": "dot", "title": "eImpugnadoPor"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "e_reversao_de", "label": "e_reversao_de", "shape": "dot", "title": "e_reversao_de"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "em_antagonismo_com", "label": "em_antagonismo_com", "shape": "dot", "title": "em_antagonismo_com"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "estaSobPressaoImobiliaria", "label": "estaSobPressaoImobiliaria", "shape": "dot", "title": "estaSobPressaoImobiliaria"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "executaAcao", "label": "executaAcao", "shape": "dot", "title": "executaAcao"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "exerceTutelaSobre", "label": "exerceTutelaSobre", "shape": "dot", "title": "exerceTutelaSobre"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "geraBonusPara", "label": "geraBonusPara", "shape": "dot", "title": "geraBonusPara"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "gera_beneficio", "label": "gera_beneficio", "shape": "dot", "title": "gera_beneficio"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "institui", "label": "institui", "shape": "dot", "title": "institui"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "interageCom", "label": "interageCom", "shape": "dot", "title": "interageCom"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "permiteExcecao", "label": "permiteExcecao", "shape": "dot", "title": "permiteExcecao"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "permiteTransferirDe", "label": "permiteTransferirDe", "shape": "dot", "title": "permiteTransferirDe"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "permiteTransferirPara", "label": "permiteTransferirPara", "shape": "dot", "title": "permiteTransferirPara"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "recomendaAcao", "label": "recomendaAcao", "shape": "dot", "title": "recomendaAcao"}, {"color": "#F38181", "font": {"color": "white"}, "id": "utilizaInstrumento", "label": "utilizaInstrumento", "shape": "dot", "title": "utilizaInstrumento"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "violaProcessoDe", "label": "violaProcessoDe", "shape": "dot", "title": "violaProcessoDe"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "gera_consequencia", "label": "gera_consequencia", "shape": "dot", "title": "gera_consequencia"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "multiplicadorBonus", "label": "multiplicadorBonus", "shape": "dot", "title": "multiplicadorBonus"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "permiteRemembramento", "label": "permiteRemembramento", "shape": "dot", "title": "permiteRemembramento"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "temAtribuicaoLegal", "label": "temAtribuicaoLegal", "shape": "dot", "title": "temAtribuicaoLegal"}, {"color": "#FFE66D", "font": {"color": "white"}, "id": "ArtigoDeLei", "label": "Artigo de Lei", "shape": "dot", "title": "Artigo de Lei"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Doenca_e_Morte", "label": "Doen\u00e7a e Morte", "shape": "dot", "title": "Doen\u00e7a e Morte"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Investidor_Desenvolvedor", "label": "Investidor Desenvolvedor (Papel Positivo)", "shape": "dot", "title": "Investidor Desenvolvedor (Papel Positivo)"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "OODC", "label": "OODC - Outorga Onerosa do Direito de Construir", "shape": "dot", "title": "OODC - Outorga Onerosa do Direito de Construir"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "SPR", "label": "SPR - Setor de Preserva\u00e7\u00e3o Rigorosa", "shape": "dot", "title": "SPR - Setor de Preserva\u00e7\u00e3o Rigorosa"}, {"color": "#FF6B6B", "font": {"color": "white"}, "id": "AgenteLegislativo", "label": "Agente Legislativo", "shape": "dot", "title": "Agente Legislativo"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "AreaRecentro", "label": "\u00c1rea de Aplica\u00e7\u00e3o do Recentro", "shape": "dot", "title": "\u00c1rea de Aplica\u00e7\u00e3o do Recentro"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "AreaReceptoraBonus", "label": "\u00c1rea Receptora de B\u00f4nus Construtivo", "shape": "dot", "title": "\u00c1rea Receptora de B\u00f4nus Construtivo"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "AreaReceptoraTDC", "label": "\u00c1rea Receptora de TDC", "shape": "dot", "title": "\u00c1rea Receptora de TDC"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Arrecadacao_Aumentada", "label": "Arrecada\u00e7\u00e3o Aumentada", "shape": "dot", "title": "Arrecada\u00e7\u00e3o Aumentada"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Arrecadacao_Perdida", "label": "Arrecada\u00e7\u00e3o Perdida", "shape": "dot", "title": "Arrecada\u00e7\u00e3o Perdida"}, {"color": "#AA4465", "font": {"color": "white"}, "id": "Caos_Funcional", "label": "Caos Funcional", "shape": "dot", "title": "Caos Funcional"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Categoria_ZEIS", "label": "Categoria ZEIS (Norma)", "shape": "dot", "title": "Categoria ZEIS (Norma)"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "Centro_Ocioso", "label": "Centro Ocioso", "shape": "dot", "title": "Centro Ocioso"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Comunidade", "label": "Comunidade", "shape": "dot", "title": "Comunidade"}, {"color": "#6BCF7F", "font": {"color": "white"}, "id": "Dignidade_Social", "label": "Dignidade Social", "shape": "dot", "title": "Dignidade Social"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "IEP", "label": "IEP - Im\u00f3vel Especial de Preserva\u00e7\u00e3o", "shape": "dot", "title": "IEP - Im\u00f3vel Especial de Preserva\u00e7\u00e3o"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "IncentivoRecentro", "label": "Incentivo Fiscal (Recentro)", "shape": "dot", "title": "Incentivo Fiscal (Recentro)"}, {"color": "#6BCF7F", "font": {"color": "white"}, "id": "Ordem_Funcional", "label": "Ordem Funcional", "shape": "dot", "title": "Ordem Funcional"}, {"color": "#F38181", "font": {"color": "white"}, "id": "PEUC", "label": "PEUC - Parcelamento, Edifica\u00e7\u00e3o ou Utiliza\u00e7\u00e3o Compuls\u00f3rios", "shape": "dot", "title": "PEUC - Parcelamento, Edifica\u00e7\u00e3o ou Utiliza\u00e7\u00e3o Compuls\u00f3rios"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "ProcessoLegislativo", "label": "Processo Legislativo", "shape": "dot", "title": "Processo Legislativo"}, {"color": "#FFE66D", "font": {"color": "white"}, "id": "ProjetoDeLei", "label": "Projeto de Lei (PL)", "shape": "dot", "title": "Projeto de Lei (PL)"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "RemembramentoDeLotes", "label": "Remembramento de Lotes", "shape": "dot", "title": "Remembramento de Lotes"}, {"color": "#FF6B6B", "font": {"color": "white"}, "id": "AgenteExecutivo", "label": "Agente Executivo", "shape": "dot", "title": "Agente Executivo"}, {"color": "#FF6B6B", "font": {"color": "white"}, "id": "Agente_Especulativo", "label": "Agente Especulativo (Papel Negativo)", "shape": "dot", "title": "Agente Especulativo (Papel Negativo)"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "AreaCedenteTDC", "label": "\u00c1rea Cedente de TDC", "shape": "dot", "title": "\u00c1rea Cedente de TDC"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "BonusConstrutivo", "label": "B\u00f4nus Construtivo", "shape": "dot", "title": "B\u00f4nus Construtivo"}, {"color": "#F38181", "font": {"color": "white"}, "id": "InstrumentoDeOrdenamentoFisico", "label": "InstrumentoDeOrdenamentoFisico", "shape": "dot", "title": "InstrumentoDeOrdenamentoFisico"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "OrgaoParticipativo", "label": "\u00d3rg\u00e3o Participativo", "shape": "dot", "title": "\u00d3rg\u00e3o Participativo"}, {"color": "#95E1D3", "font": {"color": "white"}, "id": "ZEIS", "label": "ZEIS - Zona Especial de Interesse Social", "shape": "dot", "title": "ZEIS - Zona Especial de Interesse Social"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "ZEPH", "label": "ZEPH - Zona Especial de Preserva\u00e7\u00e3o do Patrim\u00f4nio", "shape": "dot", "title": "ZEPH - Zona Especial de Preserva\u00e7\u00e3o do Patrim\u00f4nio"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "CategoriaNormativa", "label": "Categoria Normativa", "shape": "dot", "title": "Categoria Normativa"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "IncentivoFiscal", "label": "IncentivoFiscal", "shape": "dot", "title": "IncentivoFiscal"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "OrgaoDeControle", "label": "\u00d3rg\u00e3o de Controle", "shape": "dot", "title": "\u00d3rg\u00e3o de Controle"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "OrgaoDePreservacao", "label": "\u00d3rg\u00e3o de Preserva\u00e7\u00e3o", "shape": "dot", "title": "\u00d3rg\u00e3o de Preserva\u00e7\u00e3o"}, {"color": "#6BCF7F", "font": {"color": "white"}, "id": "TransferenciaDireitoDeConstruir", "label": "TDC - Transfer\u00eancia do Direito de Construir", "shape": "dot", "title": "TDC - Transfer\u00eancia do Direito de Construir"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "Acao_Propositiva", "label": "A\u00e7\u00e3o Propositiva", "shape": "dot", "title": "A\u00e7\u00e3o Propositiva"}, {"color": "#FF6B6B", "font": {"color": "white"}, "id": "Agente_de_Mercado", "label": "Agente_de_Mercado", "shape": "dot", "title": "Agente_de_Mercado"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "LegislacaoUrbana", "label": "Legisla\u00e7\u00e3o Urbana (Lei)", "shape": "dot", "title": "Legisla\u00e7\u00e3o Urbana (Lei)"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "Acao_Impeditiva", "label": "A\u00e7\u00e3o Impeditiva (Veto/Ina\u00e7\u00e3o)", "shape": "dot", "title": "A\u00e7\u00e3o Impeditiva (Veto/Ina\u00e7\u00e3o)"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "ZonaDePreservacao", "label": "Zona de Preserva\u00e7\u00e3o (Patrim\u00f4nio)", "shape": "dot", "title": "Zona de Preserva\u00e7\u00e3o (Patrim\u00f4nio)"}, {"color": "#F38181", "font": {"color": "white"}, "id": "ZonaDeAplicacaoDeInstrumento", "label": "ZonaDeAplicacaoDeInstrumento", "shape": "dot", "title": "ZonaDeAplicacaoDeInstrumento"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "BeneficioUrbano", "label": "Benef\u00edcio Urbano", "shape": "dot", "title": "Benef\u00edcio Urbano"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "DanoUrbano", "label": "Dano Urbano", "shape": "dot", "title": "Dano Urbano"}, {"color": "#F38181", "font": {"color": "white"}, "id": "InstrumentoFiscalEFinanceiro", "label": "InstrumentoFiscalEFinanceiro", "shape": "dot", "title": "InstrumentoFiscalEFinanceiro"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "AcaoUrbana", "label": "A\u00e7\u00e3o Urbana", "shape": "dot", "title": "A\u00e7\u00e3o Urbana"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "PoderPublico", "label": "Poder P\u00fablico", "shape": "dot", "title": "Poder P\u00fablico"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "Norma", "label": "Norma Jur\u00eddica", "shape": "dot", "title": "Norma Jur\u00eddica"}, {"color": "#4ECDC4", "font": {"color": "white"}, "id": "InstrumentoAcao", "label": "Instrumento \u0026 A\u00e7\u00e3o", "shape": "dot", "title": "Instrumento \u0026 A\u00e7\u00e3o"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "ConsequenciaUrbana", "label": "Consequ\u00eancia Urbana", "shape": "dot", "title": "Consequ\u00eancia Urbana"}, {"color": "#D3D3D3", "font": {"color": "white"}, "id": "EspacoDeConflito", "label": "Espa\u00e7o de Conflito", "shape": "dot", "title": "Espa\u00e7o de Conflito"}, {"color": "#FF6B6B", "font": {"color": "white"}, "id": "AgenteUrbano", "label": "Agente Urbano", "shape": "dot", "title": "Agente Urbano"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "Camara_Municipal_do_Recife", "label": "executaAcao", "title": "executaAcao", "to": "Acao_Criar_Lei_PREZEIS"}, {"arrows": "to", "from": "Prefeitura_do_Recife", "label": "executaAcao", "title": "executaAcao", "to": "Acao_Aplicar_PEUC"}, {"arrows": "to", "from": "Prefeitura_do_Recife", "label": "executaAcao", "title": "executaAcao", "to": "Acao_Omitir_Fiscalizacao_PREZEIS"}, {"arrows": "to", "from": "Prefeitura_do_Recife", "label": "executaAcao", "title": "executaAcao", "to": "Acao_Sancionar_Lei_Remembramento"}, {"arrows": "to", "from": "Lei_do_PREZEIS_1995", "label": "conflitaCom", "title": "conflitaCom", "to": "Lei_do_Remembramento_2020"}, {"arrows": "to", "from": "Lei_do_Remembramento_2020", "label": "conflitaCom", "title": "conflitaCom", "to": "Lei_do_PREZEIS_1995"}, {"arrows": "to", "from": "Acao_Omitir_Fiscalizacao_PREZEIS", "label": "causa_direta", "title": "causa_direta", "to": "Risco_de_Gentrificacao"}, {"arrows": "to", "from": "Acao_Sancionar_Lei_Remembramento", "label": "causa_direta", "title": "causa_direta", "to": "Risco_de_Gentrificacao"}, {"arrows": "to", "from": "Acao_Aplicar_PEUC", "label": "gera_beneficio", "title": "gera_beneficio", "to": "Arrecadacao_Aumentada_Centro"}, {"arrows": "to", "from": "Acao_Aplicar_PEUC", "label": "gera_beneficio", "title": "gera_beneficio", "to": "Ordem_Funcional_Centro"}, {"arrows": "to", "from": "Acao_Criar_Lei_PREZEIS", "label": "gera_beneficio", "title": "gera_beneficio", "to": "Dignidade_Social_Coque"}, {"arrows": "to", "from": "Acao_Criar_Lei_PREZEIS", "label": "gera_beneficio", "title": "gera_beneficio", "to": "Direito_a_Moradia"}, {"arrows": "to", "from": "Acao_Aplicar_PEUC", "label": "utilizaInstrumento", "title": "utilizaInstrumento", "to": "Instrumento_PEUC"}, {"arrows": "to", "from": "Acao_Sancionar_Lei_Remembramento", "label": "utilizaInstrumento", "title": "utilizaInstrumento", "to": "Instrumento_Remembramento"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -80000,
+            "springConstant": 0.001,
+            "springLength": 250
+        },
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
